@@ -1,5 +1,7 @@
-package com.tanner.epicGreetings;
+package com.tanner.epicGreetings.commands;
 
+import com.tanner.epicGreetings.EpicGreetings;
+import com.tanner.epicGreetings.Utility;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,6 +32,12 @@ public class SetJoinMessageCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
                 return false;
             }
+        }
+
+        if (args.length == 0) {
+            commandSender.sendMessage(ChatColor.RED + "Incorrect number of arguments. Please use the correct usage: " +
+                    "/setjoinmessage <message>");
+            return false;
         }
 
         StringBuilder newJoinMessage = new StringBuilder();
