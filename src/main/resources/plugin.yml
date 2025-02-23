@@ -2,3 +2,6 @@ name: EpicGreetings
 version: '1.0-SNAPSHOT'
 main: com.tanner.epicGreetings.EpicGreetings
 api-version: '1.21'
+commands:
+  setjoinmessage:
+    description: Change the join message from in-game. This will update the config with whatever you set.

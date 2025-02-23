@@ -1,7 +1,5 @@
 package com.tanner.epicGreetings;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -21,15 +19,9 @@ public class EpicGreetingsListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
-        String joinMessage = convertConfigMessage(config.getString("join-message"), player);
+        String joinMessage = Utility.convertConfigMessage(config.getString("join-message"), player);
         e.setJoinMessage(joinMessage);
 
         player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-    }
-
-    private String convertConfigMessage(String joinMessage, Player player) {
-        joinMessage = joinMessage.replace("{player}", player.getDisplayName());
-        joinMessage = ChatColor.translateAlternateColorCodes('&', joinMessage);
-        return joinMessage;
     }
 }

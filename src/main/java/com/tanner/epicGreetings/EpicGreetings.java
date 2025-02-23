@@ -10,6 +10,7 @@ public final class EpicGreetings extends JavaPlugin {
         // Plugin startup logic
         saveDefaultConfig();
         Bukkit.getPluginManager().registerEvents(new EpicGreetingsListener(this), this);
+        getCommand("setjoinmessage").setExecutor(new SetJoinMessageCommand(this));
     }
 
     @Override
