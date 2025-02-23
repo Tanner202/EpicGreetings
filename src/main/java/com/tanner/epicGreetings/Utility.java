@@ -11,7 +11,7 @@ public class Utility {
     }
 
     public static String convertConfigMessage(String joinMessage, Player player) {
-        joinMessage = joinMessage.replace("{player}", player.getDisplayName());
+        joinMessage = joinMessage.replace("%player%", player.getDisplayName());
         joinMessage = ChatColor.translateAlternateColorCodes('&', joinMessage);
         return joinMessage;
     }

@@ -1,8 +1,8 @@
-join-message: "&aWelcome to the server {player}!"
+join-message: "&aWelcome to the server %player%!"
 random-join-messages:
   enabled: false
   messages:
-    - "&a{player} just showed up... try to act normal."
-    - "&a{player} hatched into the world!"
-    - "&a{player} has joined the simulation."
-    - "&a{player} arrived, but only for the free pizza."
+    - "&a%player% just showed up... try to act normal."
+    - "&a%player% hatched into the world!"
+    - "&a%player% has joined the simulation."
+    - "&a%player% arrived, but only for the free pizza."
