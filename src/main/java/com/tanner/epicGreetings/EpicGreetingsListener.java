@@ -22,7 +22,7 @@ public class EpicGreetingsListener implements Listener {
         Player player = e.getPlayer();
 
         String joinMessage = convertConfigMessage(config.getString("join-message"), player);
-        Bukkit.broadcastMessage(joinMessage);
+        e.setJoinMessage(joinMessage);
 
         player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
     }
