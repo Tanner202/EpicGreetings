@@ -44,9 +44,9 @@ public class SetJoinMessageCommand implements CommandExecutor {
         epicGreetings.saveConfig();
         if (commandSender instanceof Player) {
             Player player = (Player) commandSender;
-            commandSender.sendMessage(ChatColor.GREEN + "You have set the join message to: " + Utility.convertConfigMessage(newJoinMessage.toString(), player));
+            commandSender.sendMessage(ChatColor.GREEN + "You have set the join message to: " + ChatColor.RESET + Utility.convertConfigMessage(newJoinMessage.toString(), player));
         } else {
-            commandSender.sendMessage(ChatColor.GREEN + "You have set the join message to: " + Utility.convertConfigMessage(newJoinMessage.toString()));
+            commandSender.sendMessage(ChatColor.GREEN + "You have set the join message to: " + ChatColor.RESET + Utility.convertConfigMessage(newJoinMessage.toString()));
         }
         return false;
     }
