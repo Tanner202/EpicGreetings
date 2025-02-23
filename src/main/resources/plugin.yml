@@ -1,0 +1,4 @@
+name: EpicGreetings
+version: '1.0-SNAPSHOT'
+main: com.tanner.epicGreetings.EpicGreetings
+api-version: '1.21'
