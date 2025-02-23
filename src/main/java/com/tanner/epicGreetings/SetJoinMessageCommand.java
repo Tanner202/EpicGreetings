@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -20,6 +21,17 @@ public class SetJoinMessageCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
+
+        if (!(commandSender instanceof Player | commandSender instanceof ConsoleCommandSender)) { return false; }
+
+        if (commandSender instanceof Player) {
+            Player player = (Player) commandSender;
+            if (!player.hasPermission("epicgreetings.use")) {
+                player.sendMessage(ChatColor.RED + "You do not have permission to use this command!");
+                return false;
+            }
+        }
+
         StringBuilder newJoinMessage = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             newJoinMessage.append(args[i]);

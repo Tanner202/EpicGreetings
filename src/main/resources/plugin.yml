@@ -2,6 +2,9 @@ name: EpicGreetings
 version: '1.0-SNAPSHOT'
 main: com.tanner.epicGreetings.EpicGreetings
 api-version: '1.21'
+permissions:
+  epicgreetings.use:
+    description: This permission allows the user to use the commands for this plugin
 commands:
   setjoinmessage:
     description: Change the join message from in-game. This will update the config with whatever you set.
