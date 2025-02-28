@@ -1,5 +1,6 @@
 package com.tanner.epicGreetings;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -22,6 +23,25 @@ public class EpicGreetingsListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
 
+        String joinMessage = getJoinMessage();
+        e.setJoinMessage(Utility.convertConfigMessage(joinMessage, player));
+
+        playJoinSound(player);
+    }
+
+    private void playJoinSound(Player player) {
+        String soundName = config.getString("join-sound", "ENTITY_PLAYER_LEVELUP");
+
+        try {
+            Sound sound = Sound.valueOf(soundName);
+            player.playSound(player.getLocation(), sound, 1, 1);
+        } catch (IllegalArgumentException exception) {
+            player.sendMessage(ChatColor.RED + "Invalid sound in config! Using default.");
+            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        }
+    }
+
+    private String getJoinMessage() {
         String joinMessage;
         if (config.getBoolean("random-join-messages.enabled"))
         {
@@ -31,8 +51,6 @@ public class EpicGreetingsListener implements Listener {
         } else {
             joinMessage = config.getString("join-message");
         }
-        e.setJoinMessage(Utility.convertConfigMessage(joinMessage, player));
-
-        player.playSound(player, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+        return joinMessage;
     }
 }

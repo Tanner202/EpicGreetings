@@ -8,5 +8,7 @@ permissions:
 commands:
   setjoinmessage:
     description: Change the join message from in-game. This will update the config with whatever you set.
+  setjoinsound:
+    description: Change the join sound from in-game. This will update the config with whatever you set.
   randomjoinmessage:
     description: Configure random join messages.
