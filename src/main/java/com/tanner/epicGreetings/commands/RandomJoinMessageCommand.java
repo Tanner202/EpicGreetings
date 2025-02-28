@@ -37,33 +37,28 @@ public class RandomJoinMessageCommand implements CommandExecutor {
         }
 
         if (args.length == 1) {
-            switch (args[0]) {
-                case "enable" -> {
-                    config.set("random-join-messages.enabled", true);
-                    commandSender.sendMessage(ChatColor.GREEN + "Random join message enabled");
+            if (args[0].equalsIgnoreCase("enable")) {
+                config.set("random-join-messages.enabled", true);
+                commandSender.sendMessage(ChatColor.GREEN + "Random join message enabled");
+            } else if (args[0].equalsIgnoreCase("disable")) {
+                config.set("random-join-messages.enabled", false);
+                commandSender.sendMessage(ChatColor.GREEN + "Random join message " + ChatColor.RED + "disabled");
+            } else if (args[0].equalsIgnoreCase("list")) {
+                List<String> listRandomMessages = config.getStringList("random-join-messages.messages");
+                StringBuilder listMessage = new StringBuilder("The current messages are:");
+                for (int i = 0; i < listRandomMessages.size(); i++) {
+                    listMessage.append("\nIndex ").append(i).append(": ").append(listRandomMessages.get(i));
                 }
-                case "disable" -> {
-                    config.set("random-join-messages.enabled", false);
-                    commandSender.sendMessage(ChatColor.GREEN + "Random join message " + ChatColor.RED + "disabled");
-                }
-                case "list" -> {
-                    List<String> listRandomMessages = config.getStringList("random-join-messages.messages");
-                    StringBuilder listMessage = new StringBuilder("The current messages are:");
-                    for (int i = 0; i < listRandomMessages.size(); i++) {
-                        listMessage.append("\nIndex ").append(i).append(": ").append(listRandomMessages.get(i));
-                    }
-                    commandSender.sendMessage(ChatColor.GRAY + listMessage.toString());
-                }
-                default -> {
-                    commandSender.sendMessage(ChatColor.RED + "Please use the correct usage:\n" +
-                            "- /randomjoinmessage enable\n" +
-                            "- /randomjoinmessage disable\n" +
-                            "- /randomjoinmessage add <message>\n" +
-                            "- /randomjoinmessage remove <index>\n" +
-                            "- /randomjoinmessage list");
-                }
+                commandSender.sendMessage(ChatColor.GRAY + listMessage.toString());
+            } else {
+                commandSender.sendMessage(ChatColor.RED + "Please use the correct usage:\n" +
+                        "- /randomjoinmessage enable\n" +
+                        "- /randomjoinmessage disable\n" +
+                        "- /randomjoinmessage add <message>\n" +
+                        "- /randomjoinmessage remove <index>\n" +
+                        "- /randomjoinmessage list");
             }
-        }  else if (args.length == 2 && args[0].equals("remove")) {
+        } else if (args.length == 2 && args[0].equalsIgnoreCase("remove")) {
             int indexToRemove;
             try {
                 indexToRemove = Integer.parseInt(args[1]);
@@ -72,16 +67,21 @@ public class RandomJoinMessageCommand implements CommandExecutor {
                 return false;
             }
 
+            if (epicGreetings.getConfig().getStringList("random-join-messages.messages").isEmpty()) {
+                commandSender.sendMessage(ChatColor.RED + "You cannot remove a message because the random messages list is empty.");
+                return false;
+            }
+
             List<String> existingRandomMessages = config.getStringList("random-join-messages.messages");
 
-            if (indexToRemove < existingRandomMessages.size()) {
+            if (indexToRemove < existingRandomMessages.size() && indexToRemove >= 0) {
                 commandSender.sendMessage(ChatColor.GREEN + "You " + ChatColor.RED + "removed: " + ChatColor.RESET + Utility.convertConfigMessage(existingRandomMessages.get(indexToRemove)) + ChatColor.GREEN + " from the random message list.");
                 existingRandomMessages.remove(indexToRemove);
                 config.set("random-join-messages.messages", existingRandomMessages);
             } else {
                 commandSender.sendMessage(ChatColor.RED + "This index is outside of the range of the list. Please choose a number between 0-" + (existingRandomMessages.size() - 1));
             }
-        } else if (args.length > 2 && args[0].equals("add")) {
+        } else if (args.length >= 2 && args[0].equalsIgnoreCase("add")) {
             StringBuilder newRandomMessage = new StringBuilder();
             for (int i = 1; i < args.length; i++) {
                 newRandomMessage.append(args[i]);

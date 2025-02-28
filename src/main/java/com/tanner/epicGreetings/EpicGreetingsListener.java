@@ -32,7 +32,7 @@ public class EpicGreetingsListener implements Listener {
     }
 
     private void playJoinSound(Player player) {
-        String soundName = config.getString("join-sound.sound", "ENTITY_PLAYER_LEVELUP");
+        String soundName = config.getString("join-sound.sound");
 
         try {
             Sound sound = Sound.valueOf(soundName);
@@ -45,7 +45,7 @@ public class EpicGreetingsListener implements Listener {
 
     private String getJoinMessage() {
         String joinMessage;
-        if (config.getBoolean("random-join-messages.enabled"))
+        if (config.getBoolean("random-join-messages.enabled") && !config.getStringList("random-join-messages.messages").isEmpty())
         {
             List<String> messages = config.getStringList("random-join-messages.messages");
             int randomIndex = new Random().nextInt(messages.size());
