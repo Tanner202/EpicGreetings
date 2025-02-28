@@ -2,7 +2,7 @@ package com.tanner.epicGreetings;
 
 import com.tanner.epicGreetings.commands.RandomJoinMessageCommand;
 import com.tanner.epicGreetings.commands.SetJoinMessageCommand;
-import com.tanner.epicGreetings.commands.SetJoinSoundCommand;
+import com.tanner.epicGreetings.commands.JoinSoundCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +14,7 @@ public final class EpicGreetings extends JavaPlugin {
         saveDefaultConfig();
         Bukkit.getPluginManager().registerEvents(new EpicGreetingsListener(this), this);
         getCommand("setjoinmessage").setExecutor(new SetJoinMessageCommand(this));
-        getCommand("setjoinsound").setExecutor(new SetJoinSoundCommand(this));
+        getCommand("joinsound").setExecutor(new JoinSoundCommand(this));
         getCommand("randomjoinmessage").setExecutor(new RandomJoinMessageCommand(this));
     }
 

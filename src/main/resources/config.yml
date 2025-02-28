@@ -1,5 +1,7 @@
 join-message: "&aWelcome to the server %player%!"
-join-sound: "ENTITY_PLAYER_LEVELUP"
+join-sound:
+  enabled: true
+  sound: "ENTITY_PLAYER_LEVELUP"
 random-join-messages:
   enabled: false
   messages:

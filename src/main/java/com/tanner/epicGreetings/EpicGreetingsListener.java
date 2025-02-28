@@ -26,11 +26,13 @@ public class EpicGreetingsListener implements Listener {
         String joinMessage = getJoinMessage();
         e.setJoinMessage(Utility.convertConfigMessage(joinMessage, player));
 
-        playJoinSound(player);
+        if (config.getBoolean("join-sound.enabled")) {
+            playJoinSound(player);
+        }
     }
 
     private void playJoinSound(Player player) {
-        String soundName = config.getString("join-sound", "ENTITY_PLAYER_LEVELUP");
+        String soundName = config.getString("join-sound.sound", "ENTITY_PLAYER_LEVELUP");
 
         try {
             Sound sound = Sound.valueOf(soundName);
