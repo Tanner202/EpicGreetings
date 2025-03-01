@@ -5,9 +5,8 @@ import com.tanner.epicGreetings.commands.RandomJoinMessageCommand;
 import com.tanner.epicGreetings.commands.SetJoinMessageCommand;
 import com.tanner.epicGreetings.commands.JoinSoundCommand;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.yaml.snakeyaml.scanner.ScannerException;
 
 import java.io.File;
 
@@ -23,8 +22,6 @@ public final class EpicGreetings extends JavaPlugin {
         } else {
             try {
                 getConfig().load(configFile);
-            } catch (InvalidConfigurationException | ScannerException e) {
-                backupConfig();
             } catch (Exception e) {
                 backupConfig();
             }
@@ -55,6 +52,6 @@ public final class EpicGreetings extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        HandlerList.unregisterAll(this);
     }
 }
