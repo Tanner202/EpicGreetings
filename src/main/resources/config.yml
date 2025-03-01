@@ -1,7 +1,12 @@
+# The join message for all players
 join-message: "&aWelcome to the server %player%!"
+
+# Join sound settings
 join-sound:
   enabled: true
   sound: "ENTITY_PLAYER_LEVELUP"
+
+# Random join messages
 random-join-messages:
   enabled: false
   messages:
