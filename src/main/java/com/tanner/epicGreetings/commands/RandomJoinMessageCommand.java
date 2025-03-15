@@ -75,7 +75,7 @@ public class RandomJoinMessageCommand implements CommandExecutor {
             List<String> existingRandomMessages = config.getStringList("random-join-messages.messages");
 
             if (indexToRemove < existingRandomMessages.size() && indexToRemove >= 0) {
-                commandSender.sendMessage(ChatColor.GREEN + "You " + ChatColor.RED + "removed: " + ChatColor.RESET + Utility.convertConfigMessage(existingRandomMessages.get(indexToRemove)) + ChatColor.GREEN + " from the random message list.");
+                commandSender.sendMessage(ChatColor.GREEN + "You " + ChatColor.RED + "removed" + ChatColor.GREEN +": '" + ChatColor.RESET + Utility.convertConfigMessage(existingRandomMessages.get(indexToRemove)) + ChatColor.GREEN + "' from the random message list.");
                 existingRandomMessages.remove(indexToRemove);
                 config.set("random-join-messages.messages", existingRandomMessages);
             } else {
@@ -93,7 +93,7 @@ public class RandomJoinMessageCommand implements CommandExecutor {
             List<String> randomMessages = config.getStringList("random-join-messages.messages");
             randomMessages.add(newRandomMessage.toString());
             config.set("random-join-messages.messages", randomMessages);
-            commandSender.sendMessage(ChatColor.GREEN + "You added: " + ChatColor.RESET + Utility.convertConfigMessage(newRandomMessage.toString()) + ChatColor.GREEN + " to the random message list");
+            commandSender.sendMessage(ChatColor.GREEN + "You added: '" + ChatColor.RESET + Utility.convertConfigMessage(newRandomMessage.toString()) + ChatColor.GREEN + "' to the random message list");
         } else {
             commandSender.sendMessage(ChatColor.RED + "Please use the correct usage:\n" +
                     "- /randomjoinmessage enable\n" +

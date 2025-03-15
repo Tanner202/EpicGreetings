@@ -54,7 +54,7 @@ public class JoinSoundCommand implements CommandExecutor {
                     Sound.valueOf(soundName);
                     config.set("join-sound.sound", soundName);
                     epicGreetings.saveConfig();
-                    commandSender.sendMessage(ChatColor.GREEN + "You have set the join sound to: " + soundName);
+                    commandSender.sendMessage(ChatColor.GREEN + "You have set the join sound to: '" + soundName + "'");
                 } catch (IllegalArgumentException exception) {
                     commandSender.sendMessage(ChatColor.RED + "This is not a valid sound name. Please choose a valid sound name. \nA list of sounds can be found on: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html\n- Example: ENTITY_PLAYER_LEVELUP");
                 }

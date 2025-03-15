@@ -6,6 +6,8 @@ permissions:
   epicgreetings.use:
     description: This permission allows the user to use the commands for this plugin
 commands:
+  epicgreetings:
+    description: Has a help option to list all commands.
   setjoinmessage:
     description: Configure the join message from in-game. This will update the config with whatever you set.
   joinsound:
