@@ -15,8 +15,11 @@ public class EpicGreetingsListener implements Listener {
 
     private FileConfiguration config;
 
+    private final Random random;
+
     public EpicGreetingsListener(EpicGreetings epicGreetings) {
         config = epicGreetings.getConfig();
+        this.random = new Random();
     }
 
     @EventHandler
@@ -48,7 +51,7 @@ public class EpicGreetingsListener implements Listener {
         if (config.getBoolean("random-join-messages.enabled") && !config.getStringList("random-join-messages.messages").isEmpty())
         {
             List<String> messages = config.getStringList("random-join-messages.messages");
-            int randomIndex = new Random().nextInt(messages.size());
+            int randomIndex = random.nextInt(messages.size());
             joinMessage = messages.get(randomIndex);
         } else {
             joinMessage = config.getString("join-message");
